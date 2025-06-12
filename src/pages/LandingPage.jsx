@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { supabase } from "../lib/supabaseClient";
 import Advantage from "../components/Advantage";
-import SmokeScreen from "../components/SmokeScreen";
+import Accordion from "../components/comp-334";
 
 function LandingPage() {
     // Middleware pour vérifier si l'utilisateur est connecté et le rediriger vers la page home si oui
@@ -35,6 +35,7 @@ function LandingPage() {
             document.body.style.overflow = "auto";
         }
     });
+    
 
     // Advantages
     const advantages = [
@@ -42,7 +43,7 @@ function LandingPage() {
             img: "/undraw_online-video_ecqg.svg",
             title: "Suivi précis",
             description:
-                "Nous gardons automatiquement en mémoire la saison, l’épisode et même la minute précise où tu t’es arrêté.",
+                "Nous notons automatiquement la saison, l’épisode et même la minute précise où tu t’es arrêté lorsque tu regarderas du contenu sur l'une des plateformes que nous prenons en charge.",
         },
         {
             img: "/undraw_devices_odm4.svg",
@@ -217,6 +218,17 @@ function LandingPage() {
                         <img src="/brave.png" className="h-12 w-12" alt="" />
                     </div>
                 </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row px-8 lg:px-24 py-12 gap-12 justify-center items-center lg:items-start">
+                <div>
+                    <p className="text-4xl font-medium mb-3">
+                    Questions <span className="text-tbc-primary">fréquemment posées</span>
+                    </p>
+                    <p>Des questions ? Tu peux me joindre sur <a href="https://www.linkedin.com/in/ethan-bokam%C3%A9-0b59a430b" className="text-tbc-primary underline underline-offset-2">mon linkedin</a> .</p>
+                </div>
+                
+                <Accordion />
             </div>
 
             {/* Footer */}
