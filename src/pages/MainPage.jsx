@@ -116,7 +116,7 @@ function MainPage() {
                             >
                                 Papadustream
                             </a>
-                            ,{" "}
+                            {/* ,{" "}
                             <a
                                 href="https://v6.voiranime.com"
                                 target="_blank"
@@ -124,7 +124,7 @@ function MainPage() {
                                 className="hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary"
                             >
                                 Voiranime
-                            </a>
+                            </a> */}
                         </span>
                     </p>
                     <div className="flex flex-col justify-center items-center mt-8">

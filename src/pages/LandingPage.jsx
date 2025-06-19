@@ -224,7 +224,7 @@ function LandingPage() {
                                 Anime-sama
                             </a>
                         </div>
-                        <div className="flex flex-col items-center">
+                        {/* <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/v6.voiranime.com?s=256"
                                 alt="Logo Voiranime"
@@ -233,7 +233,7 @@ function LandingPage() {
                             <a href="https://v6.voiranime.com/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
                                 Voiranime
                             </a>
-                        </div>
+                        </div> */}
                         <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/papadustream.cash?s=256"
