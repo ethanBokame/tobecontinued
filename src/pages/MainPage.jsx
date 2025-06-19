@@ -78,7 +78,7 @@ function MainPage() {
             {/* Ecran de chargement */}
 
             {isLoading && (
-                <div className="absolute inset-0 bg-white dark:bg-black flex flex-col justify-center items-center">
+                <div className="absolute inset-0 z-20 bg-white dark:bg-black flex flex-col justify-center items-center">
                     <img
                         src="luffy-gear-5.gif" // mets ici le bon chemin
                         alt="Chargement"
