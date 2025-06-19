@@ -40,7 +40,7 @@ const items = [
     id: "6",
     title: "Ma progression est-elle enregistrée automatiquement ?",
     content:
-      "Oui, dès que vous atteignez la fin d’un épisode ou que vous quittez la page, l’extension enregistre automatiquement votre progression.",
+      "Oui, votre progression est automatiquement enregistrée dès que vous arrivez sur la page d’un épisode ou que vous la quittez.",
   },
   {
     id: "7",

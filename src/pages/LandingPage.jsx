@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { X, MoonIcon, SunIcon } from "lucide-react";
 import { supabase } from "../lib/supabaseClient";
 import Advantage from "../components/Advantage";
+import { Switch } from "../components/animate-ui/base/switch";
 import Accordion from "../components/comp-334";
 
 function LandingPage() {
@@ -35,7 +36,14 @@ function LandingPage() {
             document.body.style.overflow = "auto";
         }
     });
-    
+
+    // Aller vers l'installation
+    const handleScrollToInstallation = () => {
+        const installationSection = document.getElementById("installation");
+        if (installationSection) {
+            installationSection.scrollIntoView({ behavior: "smooth", block: "center"  });
+        }
+    };
 
     // Advantages
     const advantages = [
@@ -43,7 +51,7 @@ function LandingPage() {
             img: "/undraw_online-video_ecqg.svg",
             title: "Suivi précis",
             description:
-                "Nous notons automatiquement la saison, l’épisode et même la minute précise où tu t’es arrêté lorsque tu regarderas du contenu sur l'une des plateformes que nous prenons en charge.",
+                "Pas besoin de te souvenir de là où tu t’es arrêté : on enregistre automatiquement la saison et l’épisode pendant que tu regardes sur l’une des plateformes compatibles.",
         },
         {
             img: "/undraw_devices_odm4.svg",
@@ -59,28 +67,64 @@ function LandingPage() {
         },
     ];
 
+    // Dark mode
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const darkMode = localStorage.getItem("darkMode");
+        if (darkMode == "true") {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    // Changer le thème
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
+    // Changer le thème du document
+    useEffect(() => {
+        if (isDarkMode) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("darkMode", "true")
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("darkMode", "false")
+        }
+    }, [isDarkMode]);
+
     return (
         <div>
             {/* Smoke screen */}
             {isBottomSheetOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50"
+                    className="fixed inset-0 z-10 bg-black/50"
                     onClick={() => setIsBottomSheetOpen(false)}
                 ></div>
             )}
 
             {/* Navbar */}
-            <nav className="flex items-center lg:gap-3 p-6">
-                <img src="/logo.png" alt="logo" className="w-12 h-12" />
-                <p className="text-lg mt-2 lg:text-3xl font-bold text-gray-500">
-                    ToBe<span className="text-tbc-primary">Continued</span>
-                </p>
+            <nav className="flex items-center justify-between lg:gap-3 p-6">
+                <div className="flex items-center lg:gap-3">
+                    <img src="/logo.png" alt="logo" className="w-12 h-12" />
+                    <p className="text-lg mt-2 lg:text-3xl font-bold text-gray-500">
+                        ToBe<span className="text-tbc-primary">Continued</span>
+                    </p>
+                </div>
+
+                <Switch
+                    className="ml-auto"
+                    checked={isDarkMode}
+                    leftIcon={<SunIcon />}
+                    rightIcon={<MoonIcon />}
+                    onCheckedChange={toggleDarkMode}
+                />
             </nav>
 
             {/* Hero */}
-            <div className="flex flex-col-reverse md:flex-row items-center justify-between px-8 lg:px-24 pt-4 lg:pt-12 py-12 gap-6 lg:gap-12 bg-[whitesmoke]">
+            <div className="flex flex-col-reverse md:flex-row items-center justify-between px-8 lg:px-24 pt-4 lg:pt-12 py-12 gap-6 lg:gap-12 bg-[whitesmoke] dark:bg-gray-800">
                 <div className="flex flex-col gap-10 max-w-2xl">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center lg:text-left text-gray-500 leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold text-center lg:text-left text-gray-500 dark:text-white leading-tight">
                         Tu ne sais plus sur quel épisode tu t’étais{" "}
                         <span className="text-tbc-primary">arrêté</span> ?{" "}
                         <br />
@@ -90,9 +134,9 @@ function LandingPage() {
                     <div className="flex flex-col lg:flex-row gap-4 flex-wrap">
                         <button
                             className="bg-tbc-primary text-white text-lg md:text-xl font-semibold px-6 py-3 rounded-md hover:bg-blue-600 transition"
-                            onClick={() => setIsBottomSheetOpen(true)}
+                            onClick={() => handleScrollToInstallation()}
                         >
-                            Se connecter
+                            Commencer
                         </button>
                         <button className="bg-tbc-secondary text-white text-lg md:text-xl font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition">
                             Voir un exemple
@@ -117,7 +161,11 @@ function LandingPage() {
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-16 sm:gap-24 px-8 lg:px-24 py-12 bg-[whitesmoke]">
+            {/* Etapes */}
+            <div
+                id="installation"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-16 sm:gap-24 px-8 lg:px-24 py-20 bg-[whitesmoke] dark:bg-gray-800"
+            >
                 <div className="flex flex-col gap-1 items-baseline">
                     <div className="relative flex items-center justify-center p-5 bg-tbc-primary rounded-full mx-auto">
                         <p className="absolute text-white font-medium">1</p>
@@ -141,6 +189,12 @@ function LandingPage() {
                     <p className="text-center w-full">
                         Se connecter sur le site web
                     </p>
+                    <p 
+                        className="text-tbc-primary underline underline-offset-2 mx-auto cursor-pointer"
+                        onClick={() => setIsBottomSheetOpen(true)}
+                    >
+                        Cliquer ici pour vous connecter
+                    </p>
                 </div>
 
                 <div className="flex flex-col gap-2 items-baseline">
@@ -156,58 +210,64 @@ function LandingPage() {
 
             <div className="flex flex-col px-8 gap-16 lg:px-24 py-12">
                 <div>
-                    <p className="text-3xl font-medium text-center text-gray-500">
+                    <p className="text-3xl font-medium text-center text-gray-500 dark:text-white">
                         Plateformes prises en charge
                     </p>
-                    <div className="grid grid-cols-3 lg:grid-cols-5 gap-5 mt-12">
-                        <div>
+                    <div className="flex gap-10 text-center mt-12 justify-center">
+                        <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/anime-sama.fr?s=256"
-                                alt=""
+                                alt="Logo Anime-sama"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <p className="text-center font-medium">
+                            <a href="https://anime-sama.fr/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
                                 Anime-sama
-                            </p>
+                            </a>
                         </div>
-                        <div>
+                        <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/v6.voiranime.com?s=256"
-                                alt=""
+                                alt="Logo Voiranime"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <p className="text-center font-medium">Voiranime</p>
+                            <a href="https://v6.voiranime.com/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Voiranime
+                            </a>
                         </div>
-                        <div>
+                        <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/papadustream.cash?s=256"
-                                alt=""
+                                alt="Logo Papadustream"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <p className="text-center font-medium">
+                            <a href="https://papadustream.cash/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
                                 Papadustream
-                            </p>
+                            </a>
                         </div>
-                        <div>
+                        {/* <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/xalaflix.io?s=256"
-                                alt=""
+                                alt="Logo Xalaflix"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <p className="text-center font-medium">Xalaflix</p>
-                        </div>
-                        <div>
+                            <a href="https://xalaflix.io/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Xalaflix
+                            </a>
+                        </div> */}
+                        {/* <div className="flex flex-col items-center">
                             <img
                                 src="/neko-sama.png"
-                                alt=""
+                                alt="Logo Neko sama"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <p className="text-center font-medium">Neko sama</p>
-                        </div>
+                            <a href="https://neko-sama.fr/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Neko sama
+                            </a>
+                        </div> */}
                     </div>
                 </div>
                 <div>
-                    <p className="text-3xl font-medium text-center text-gray-500">
+                    <p className="text-3xl font-medium text-center text-gray-500 dark:text-white">
                         Navigateurs compatibles
                     </p>
 
@@ -223,16 +283,28 @@ function LandingPage() {
             <div className="flex flex-col lg:flex-row px-8 lg:px-24 py-12 gap-12 justify-center items-center lg:items-start">
                 <div>
                     <p className="text-4xl font-medium mb-3">
-                    Questions <span className="text-tbc-primary">fréquemment posées</span>
+                        Questions{" "}
+                        <span className="text-tbc-primary">
+                            fréquemment posées
+                        </span>
                     </p>
-                    <p>Des questions ? Tu peux me joindre sur <a href="https://www.linkedin.com/in/ethan-bokam%C3%A9-0b59a430b" className="text-tbc-primary underline underline-offset-2">mon linkedin</a> .</p>
+                    <p>
+                        Des questions ? Tu peux me joindre sur{" "}
+                        <a
+                            href="https://www.linkedin.com/in/ethan-bokam%C3%A9-0b59a430b"
+                            className="text-tbc-primary underline underline-offset-2"
+                        >
+                            mon linkedin
+                        </a>{" "}
+                        .
+                    </p>
                 </div>
-                
+
                 <Accordion />
             </div>
 
             {/* Footer */}
-            <p className="text-gray-500 text-center mb-12">
+            <p className="text-gray-500 text-center mb-12 dark:text-white">
                 Une réalisation de{" "}
                 <a
                     href="https://www.linkedin.com/in/ethan-bokamé-0b59a430b"
@@ -246,14 +318,14 @@ function LandingPage() {
 
             {isBottomSheetOpen && (
                 <div
-                    className="fixed bottom-0 w-full flex flex-col items-baseline gap-2 p-4 bg-white rounded-t-lg shadow-lg"
+                    className="fixed bottom-0 z-20 w-full flex flex-col items-baseline gap-2 p-4 bg-white dark:bg-gray-800 rounded-t-lg shadow-lg cursor-pointer"
                     onClick={() => loginWithGoogle()}
                 >
                     <X
                         className="ml-auto"
                         onClick={() => setIsBottomSheetOpen(false)}
                     />
-                    <div className="flex items-center gap-2 border rounded-lg p-3 mx-auto">
+                    <div className="flex items-center gap-2 border dark:border-white rounded-lg p-3 mx-auto">
                         <svg
                             stroke="currentColor"
                             fill="currentColor"
@@ -290,6 +362,7 @@ c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.
                             ></path>
                         </svg>
                         <p>Continuer avec Google</p>
+
                     </div>
                 </div>
             )}
