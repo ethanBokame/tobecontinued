@@ -174,7 +174,7 @@ function LandingPage() {
                         Installer l'extension Chrome
                     </p>
                     <a
-                        href=""
+                        href="https://chromewebstore.google.com/detail/tobecontinued/ohhjkhjihafelghblpjaonahifiejbll"
                         target="blank"
                         className="text-tbc-primary underline underline-offset-2 mx-auto"
                     >
