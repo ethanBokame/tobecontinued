@@ -6,7 +6,7 @@ import { supabase } from "../lib/supabaseClient";
 function Navbar() {
     // Déconnexion
     const handleLogout = async () => {
-        const { error } = await supabase.auth.signOut();
+        const { error } = await supabase.auth.signOut({ scope: 'local' });
         if (!error) {
             window.location.href = "/";
         }
