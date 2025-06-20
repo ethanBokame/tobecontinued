@@ -55,7 +55,7 @@ function Card({
         >
             <div className="relative">
                 <img
-                    src={image}
+                    src={image || "/logo.png"}
                     alt={nom}
                     className="w-full h-[140px] object-cover"
                 />

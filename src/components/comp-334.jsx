@@ -66,7 +66,7 @@ export default function Component() {
             <AccordionTrigger className="py-2 text-lg font-semibold leading-6 hover:no-underline">
               {item.title}
             </AccordionTrigger>
-            <AccordionContent className="text-black text-base pb-2">
+            <AccordionContent className="text-black dark:text-white text-base pb-2">
               {item.content}
             </AccordionContent>
           </AccordionItem>

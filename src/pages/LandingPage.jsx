@@ -213,7 +213,7 @@ function LandingPage() {
                     <p className="text-3xl font-medium text-center text-gray-500 dark:text-white">
                         Plateformes prises en charge
                     </p>
-                    <div className="flex gap-10 text-center mt-12 justify-center">
+                    <div className="flex gap-10 flex-wrap text-center mt-12 justify-center">
                         <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/anime-sama.fr?s=256"
@@ -224,7 +224,7 @@ function LandingPage() {
                                 Anime-sama
                             </a>
                         </div>
-                        {/* <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/v6.voiranime.com?s=256"
                                 alt="Logo Voiranime"
@@ -233,7 +233,7 @@ function LandingPage() {
                             <a href="https://v6.voiranime.com/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
                                 Voiranime
                             </a>
-                        </div> */}
+                        </div>
                         <div className="flex flex-col items-center">
                             <img
                                 src="https://favicone.com/papadustream.cash?s=256"
@@ -244,16 +244,26 @@ function LandingPage() {
                                 Papadustream
                             </a>
                         </div>
-                        {/* <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center">
                             <img
-                                src="https://favicone.com/xalaflix.io?s=256"
-                                alt="Logo Xalaflix"
+                                src="https://favicone.com/voirdrama.org?s=256"
+                                alt="Logo Voirdrama"
                                 className="w-8 h-8 rounded-lg mb-2 mx-auto"
                             />
-                            <a href="https://xalaflix.io/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
-                                Xalaflix
+                            <a href="https://voirdrama.org/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Voirdrama
                             </a>
-                        </div> */}
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <img
+                                src="https://favicone.com/empire-stream.shop?s=256"
+                                alt="Logo Empire stream"
+                                className="w-8 h-8 rounded-lg mb-2 mx-auto"
+                            />
+                            <a href="https://empire-stream.shop/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Empire stream
+                            </a>
+                        </div>
                         {/* <div className="flex flex-col items-center">
                             <img
                                 src="/neko-sama.png"
