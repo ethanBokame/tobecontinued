@@ -8,13 +8,14 @@ import Card from "../components/Card";
 function MainPage() {
     // Utilisateur
     const [username, setUsername] = useState("");
-
+    
     // Eléments
     const [elements, setElements] = useState([]);
-
+    
     // Chargement
     const [isLoading, setIsLoading] = useState(true);
-
+    // const [isLoading, setIsLoading] = useState(false);
+    
     // Récupération des informations de base
     useEffect(() => {
         const getUserAndElements = async () => {
@@ -24,7 +25,7 @@ function MainPage() {
             } = await supabase.auth.getUser();
 
             if (error) {
-                console.error("Erreur Supabase :", error);
+                window.location.href = "/";
                 return;
             }
 
@@ -168,6 +169,7 @@ function MainPage() {
                 {elements.map((element, index) => (
                     <MotionEffect
                         key={element.id_ev}
+                        id={element.id_ev}
                         slide={{
                             direction: "down",
                         }}

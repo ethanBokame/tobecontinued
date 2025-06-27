@@ -1,27 +1,36 @@
 import { Play, Ellipsis, Pencil, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import MenuCard from "./comp-368";
+import { supabase } from "../lib/supabaseClient";
 
-function Card({
-    nom,
-    saison,
-    episode,
-    point_arret,
-    url,
-    image,
-    domain,
-    categorie,
-}) {
-    // const [isDeleted, setIsDeleted] = useState(false); // Pour la visibilité de la card
+function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, categorie}) {
+    
+    // Suppression de la card
+    const [isDeleted, setIsDeleted] = useState(false); 
+    
+    const [deleteStyle, setDeleteStyle] = useState("");
+    
+    // Suppression de l'élément en base de données
+    const deleteCardInDB = async (id) => {
+        const { error } = await supabase
+            .from("elements_visionnes")
+            .delete()
+            .eq("id_ev", id);
+    };
 
-    // const [deleteStyle, setDeleteStyle] = useState(""); // Pour la visibilité de la card
+    useEffect(() => {
+        if (isDeleted) {
+            setDeleteStyle("hidden");
 
-    // useEffect(() => {
-    //     if (isDeleted) {
-    //         setDeleteStyle("hidden");
-    //     }
-    // }, [isDeleted]);
+        }
+    }, [isDeleted]);
 
-    // Fonction qui retourne un composant <p>
+    const changeStateCard = () => {
+        setIsDeleted(!isDeleted);
+        deleteCardInDB(id_ev);
+    }
+    
+    // Fonction qui retourne un composant <p> avec le style de la catégorie 
     const categorieStyle = (categorie) => {
         switch (categorie) {
             case "série":
@@ -46,12 +55,13 @@ function Card({
                 return null;
         }
     };
-
+    
     return (
         <div
             className={
-                "flex flex-col gap-2 rounded-md overflow-hidden shadow-md bg-white dark:bg-gray-800"
+                ` ${deleteStyle} flex flex-col gap-2 rounded-md overflow-hidden shadow-md bg-white dark:bg-gray-800`
             }
+            id={id_ev}
         >
             <div className="relative">
                 <img
@@ -64,11 +74,7 @@ function Card({
                     alt=""
                     className="z-10 absolute bottom-0 left-0 w-5 h-5 ml-1 mb-1 rounded-sm"
                 />
-                <Ellipsis
-                    strokeWidth={2}
-                    size={30}
-                    className="p-1.5 absolute top-1 right-1 z-20 text-white bg-black/20 rounded-full backdrop-blur cursor-pointer"
-                />
+                <MenuCard changeStateCard={changeStateCard} />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
             </div>

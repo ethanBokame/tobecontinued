@@ -4,6 +4,9 @@ import { supabase } from "../lib/supabaseClient";
 import Advantage from "../components/Advantage";
 import { Switch } from "../components/animate-ui/base/switch";
 import Accordion from "../components/comp-334";
+import People1 from "../components/comp-412";    
+import People2 from "../components/comp-411";
+
 
 function LandingPage() {
     // Middleware pour vérifier si l'utilisateur est connecté et le rediriger vers la page home si oui
@@ -89,18 +92,34 @@ function LandingPage() {
             localStorage.setItem("darkMode", "true")
         } else {
             document.documentElement.classList.remove("dark");
-            localStorage.setItem("darkMode", "false")
+            localStorage.setItem("darkMode", "false");
         }
     }, [isDarkMode]);
+
+    // Démo
+    const [isDemoOpen, setIsDemoOpen] = useState(false);
 
     return (
         <div>
             {/* Smoke screen */}
-            {isBottomSheetOpen && (
+            {(isBottomSheetOpen || isDemoOpen) && (
                 <div
                     className="fixed inset-0 z-10 bg-black/50"
-                    onClick={() => setIsBottomSheetOpen(false)}
+                    onClick={() => {
+                        setIsBottomSheetOpen(false);
+                        setIsDemoOpen(false);
+                    }}
                 ></div>
+            )}
+
+            {/* Démo */}
+            {isDemoOpen && (
+                <img src="/screen-1.png" alt="aperçu" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[90%] sm:w-3/4 h-auto rounded-lg" />
+            )}
+
+            {/* close Démo */}
+            {isDemoOpen && (
+                <X className="absolute top-5 right-5 text-white z-20 cursor-pointer" onClick={() => setIsDemoOpen(false)} />
             )}
 
             {/* Navbar */}
@@ -138,8 +157,11 @@ function LandingPage() {
                         >
                             Commencer
                         </button>
-                        <button className="bg-tbc-secondary text-white text-lg md:text-xl font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition">
-                            Voir un exemple
+                        <button 
+                            className="bg-tbc-secondary text-white text-lg md:text-xl font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition"
+                            onClick={() => setIsDemoOpen(true)}
+                        >
+                            Aperçu
                         </button>
                     </div>
                 </div>
@@ -152,7 +174,14 @@ function LandingPage() {
                         className="w-52 md:w-64 h-auto"
                     />
                 </div>
+
             </div>
+
+            <div className="bg-[whitesmoke] dark:bg-gray-800 pb-12 mt-[-15px]">
+                <People1 className="hidden sm:block"/>
+                <People2 className="block sm:hidden"/>
+            </div>
+            
 
             {/* Advantages */}
             <div className="grid grid-cols-1 lg:grid-cols-3 px-8 lg:px-24 py-12 gap-12 text-center">
