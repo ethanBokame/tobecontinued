@@ -13,8 +13,8 @@ function MainPage() {
     const [elements, setElements] = useState([]);
     
     // Chargement
-    const [isLoading, setIsLoading] = useState(true);
-    // const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     
     // Récupération des informations de base
     useEffect(() => {
@@ -25,7 +25,7 @@ function MainPage() {
             } = await supabase.auth.getUser();
 
             if (error) {
-                window.location.href = "/";
+                // window.location.href = "/";
                 return;
             }
 
@@ -69,7 +69,7 @@ function MainPage() {
             }
         };
 
-        getUserAndElements();
+        // getUserAndElements();
     }, []);
 
     return (
@@ -182,8 +182,10 @@ function MainPage() {
                 ))}
             </div>
 
-            <p className="text-gray-500 dark:text-white text-center mb-4 px-4 mt-10">
+            <p className="text-gray-500 text-sm dark:text-white text-center mb-4 px-4 mt-10">
                 Si tu veux soutenir mon travail, boxe dans mon wave 👊🏽
+                <br />
+                Et n'hésite pas à partager l'app avec un de tes potes fan de pop culture comme toi🙌
             </p>
 
             <center>

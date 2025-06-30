@@ -2,6 +2,7 @@ import { LogOut, MoonIcon, SunIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Switch } from "../components/animate-ui/base/switch";
 import Platforms from "./comp-367";
+import Feedback from "./comp-388";
 import { supabase } from "../lib/supabaseClient";
 
 function Navbar() {
@@ -43,7 +44,7 @@ function Navbar() {
         <div className="flex justify-between items-center p-4">
             
             {/* Logo */}
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center cursor-pointer" onClick={() => window.location.href = "/"}>
                 <img src="/logo.png" alt="logo" className="w-16 h-16" />
                 <p className="hidden sm:block text-2xl font-bold text-gray-500">
                     ToBe<span className="text-tbc-primary">Continued</span>
@@ -61,6 +62,9 @@ function Navbar() {
             
             {/* Liste des plateforms prises en charge */}
             <Platforms />
+
+            {/* Feedback */}
+            <Feedback />
             
             {/* Déconnexion */}
             <div
