@@ -44,7 +44,7 @@ function Navbar() {
         <div className="flex justify-between items-center p-4">
             
             {/* Logo */}
-            <div className="flex gap-2 items-center cursor-pointer" onClick={() => window.location.href = "/"}>
+            <div className="flex gap-2 items-center cursor-pointer" onClick={() => window.location.href = "/home"}>
                 <img src="/logo.png" alt="logo" className="w-16 h-16" />
                 <p className="hidden sm:block text-2xl font-bold text-gray-500">
                     ToBe<span className="text-tbc-primary">Continued</span>
