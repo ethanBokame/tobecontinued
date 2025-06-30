@@ -29,7 +29,7 @@ export default function People1() {
           alt="Avatar 04" />
       </div>
       <p className="text-muted-foreground px-2 text-xs">
-        Déjà adoptée par <strong className="text-foreground font-medium">plus de 9</strong>{" "}
+        Déjà adoptée par <strong className="text-foreground font-medium">plus de 10</strong>{" "}
         fans de pop culture.
       </p>
     </div>
