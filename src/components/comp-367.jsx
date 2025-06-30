@@ -61,7 +61,7 @@ export default function Platforms() {
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem>  
-          <a href="https://empirestream.shop/" target="_blank" rel="noreferrer" className="flex items-center gap-1.5">
+          <a href="https://empire-stream.shop/" target="_blank" rel="noreferrer" className="flex items-center gap-1.5">
             <img
               src="https://favicone.com/empire-stream.shop?s=256"
               alt="Empirestream"
