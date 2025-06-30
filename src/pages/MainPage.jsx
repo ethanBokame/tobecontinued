@@ -13,8 +13,8 @@ function MainPage() {
     const [elements, setElements] = useState([]);
     
     // Chargement
-    // const [isLoading, setIsLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(false);
     
     // Récupération des informations de base
     useEffect(() => {
@@ -69,7 +69,7 @@ function MainPage() {
             }
         };
 
-        // getUserAndElements();
+        getUserAndElements();
     }, []);
 
     return (
