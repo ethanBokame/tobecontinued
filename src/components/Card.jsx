@@ -70,7 +70,7 @@ function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, cat
                     className="w-full h-[140px] object-cover"
                 />
                 <img
-                    src={`https://favicone.com/${domain}?s=256`}
+                    src={domain.includes('hurawatch') ? `/hurawatch.png` : `https://favicone.com/${domain}?s=256`}
                     alt=""
                     className="z-10 absolute bottom-0 left-0 w-5 h-5 ml-1 mb-1 rounded-sm"
                 />
