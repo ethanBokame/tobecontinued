@@ -70,6 +70,16 @@ export default function Platforms() {
             Empire stream
           </a>
         </DropdownMenuItem>
+        <DropdownMenuItem>  
+          <a href="https://hurawatch.cc/home/" target="_blank" rel="noreferrer" className="flex items-center gap-1.5">
+            <img
+              src="/hurawatch.png"
+              alt="Hurawatch"
+              className="w-[19px] h-[19px] rounded-sm"
+            />
+            Hurawatch
+          </a>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -54,7 +54,7 @@ function LandingPage() {
             img: "/undraw_online-video_ecqg.svg",
             title: "Suivi précis",
             description:
-                "Pas besoin de te souvenir de là où tu t’es arrêté : on enregistre automatiquement la saison et l’épisode pendant que tu regardes sur l’une des plateformes compatibles.",
+                "Pas besoin de te souvenir de là où tu t'es arrêté : on enregistre automatiquement la saison et l'épisode pendant que tu regardes sur l'une des plateformes compatibles.",
         },
         {
             img: "/undraw_devices_odm4.svg",
@@ -144,7 +144,7 @@ function LandingPage() {
             <div className="flex flex-col-reverse md:flex-row items-center justify-between px-8 lg:px-24 pt-4 lg:pt-12 py-12 gap-6 lg:gap-12 bg-[whitesmoke] dark:bg-gray-800">
                 <div className="flex flex-col gap-10 max-w-2xl">
                     <h2 className="text-4xl md:text-5xl font-bold text-center lg:text-left text-gray-500 dark:text-white leading-tight">
-                        Tu ne sais plus sur quel épisode tu t’étais{" "}
+                        Tu ne sais plus sur quel épisode tu t'étais{" "}
                         <span className="text-tbc-primary">arrêté</span> ?{" "}
                         <br />
                         Nous, <span className="text-tbc-primary">si.</span>
@@ -291,6 +291,16 @@ function LandingPage() {
                             />
                             <a href="https://empire-stream.shop/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
                                 Empire stream
+                            </a>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <img
+                                src="/hurawatch.png"
+                                alt="Logo Hurawatch"
+                                className="w-8 h-8 rounded-lg mb-2 mx-auto"
+                            />
+                            <a href="https://hurawatch.cc/home/" target="_blank" className="font-medium hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary">
+                                Hurawatch
                             </a>
                         </div>
                         {/* <div className="flex flex-col items-center">

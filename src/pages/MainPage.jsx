@@ -144,6 +144,15 @@ function MainPage() {
                             >
                                 Empire stream
                             </a>
+                            ,{" "}
+                            <a
+                                href="https://hurawatch.cc/home"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-tbc-primary hover:underline hover:underline-offset-2 decoration-tbc-primary"
+                            >
+                                Hurawatch
+                            </a>
                         </span>
                     </p>
                     <div className="flex flex-col justify-center items-center mt-8">
