@@ -33,7 +33,7 @@ export default function Component2() {
       <Button
         variant="secondary"
         className="text-muted-foreground hover:text-foreground flex items-center justify-center rounded-full bg-transparent px-3 text-xs shadow-none hover:bg-transparent">
-        +11
+        +18
       </Button>
     </div>
   );
