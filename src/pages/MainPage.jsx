@@ -8,14 +8,14 @@ import Card from "../components/Card";
 function MainPage() {
     // Utilisateur
     const [username, setUsername] = useState("");
-    
+
     // Eléments
     const [elements, setElements] = useState([]);
-    
+
     // Chargement
     const [isLoading, setIsLoading] = useState(true);
     // const [isLoading, setIsLoading] = useState(false);
-    
+
     // Récupération des informations de base
     useEffect(() => {
         const getUserAndElements = async () => {
@@ -30,7 +30,6 @@ function MainPage() {
             }
 
             if (user) {
-
                 const chaineDeCaracteres = user.user_metadata.name;
                 const mots = chaineDeCaracteres.split(" ");
                 const premierMot =
@@ -50,7 +49,7 @@ function MainPage() {
                     .from("elements_visionnes")
                     .select("*")
                     .eq("id_user", user.id)
-                    .order("date_maj", { ascending: false })
+                    .order("date_maj", { ascending: false });
 
                 if (elementsError) {
                     console.error(
@@ -94,9 +93,10 @@ function MainPage() {
             {!isLoading && elements.length === 0 && (
                 <div>
                     <p className="text-xl px-4 text-gray-500 dark:text-white leading-relaxed">
-                        Lorsque vous regarderez du contenu sur l'une des
+                        Lorsque vous regardez du contenu sur l’une des
                         plateformes que nous prenons en charge, votre
-                        progression sera automatiquement sauvegardée ici.
+                        progression est automatiquement sauvegardée ici lorsque
+                        vous fermez l’onglet de la plateforme de streaming.
                         <br />
                         <span className="text-sm text-gray-400 dark:text-white mt-2 block">
                             Plateformes prises en charge :{" "}
@@ -194,7 +194,8 @@ function MainPage() {
             <p className="text-gray-500 text-sm dark:text-white text-center mb-4 px-4 mt-10">
                 Si tu veux soutenir mon travail, boxe dans mon wave 👊🏽
                 <br />
-                Et n'hésite pas à partager l'app avec un de tes potes fan de pop culture comme toi🙌
+                Et n'hésite pas à partager l'app avec un de tes potes fan de pop
+                culture comme toi🙌
             </p>
 
             <center>
