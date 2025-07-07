@@ -13,8 +13,8 @@ function MainPage() {
     const [elements, setElements] = useState([]);
 
     // Chargement
-    // const [isLoading, setIsLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(false);
 
     // Récupération des informations de base
     useEffect(() => {
@@ -191,7 +191,7 @@ function MainPage() {
                 ))}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
             <Card
                 id_ev={1}
                 nom="Breaking Bad"
@@ -216,7 +216,7 @@ function MainPage() {
                 categorie="série"
                     status="finished"
             />
-            </div>
+            </div> */}
 
             <p className="text-gray-500 text-sm dark:text-white text-center mb-4 px-4 mt-10">
                 Si tu veux soutenir mon travail, boxe dans mon wave 👊🏽
