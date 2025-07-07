@@ -1,13 +1,12 @@
-import { Play, Ellipsis, Pencil, Trash2 } from "lucide-react";
+import { Play, CircleCheckBig } from "lucide-react";
 import { useEffect, useState } from "react";
 import MenuCard from "./comp-368";
 import { supabase } from "../lib/supabaseClient";
 
-function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, categorie}) {
+function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, categorie, status}) {
     
     // Suppression de la card
     const [isDeleted, setIsDeleted] = useState(false); 
-    
     const [deleteStyle, setDeleteStyle] = useState("");
     
     // Suppression de l'élément en base de données
@@ -17,17 +16,36 @@ function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, cat
             .delete()
             .eq("id_ev", id);
     };
-
+    
+    // Disparition de la card
     useEffect(() => {
         if (isDeleted) {
             setDeleteStyle("hidden");
-
         }
     }, [isDeleted]);
-
-    const changeStateCard = () => {
+    
+    // Toggle pour la suppression de la card
+    const changeDeleteCard = () => {
         setIsDeleted(!isDeleted);
         deleteCardInDB(id_ev);
+    }
+    
+
+    // Statut de la card
+    const [statusCard, setStatusCard] = useState(status);
+    
+    // Changement du statut en DB
+    const changeStatusCardInDB = async (id_ev, status) => {
+        const { error } = await supabase
+            .from("elements_visionnes")
+            .update({ status: status })
+            .eq("id_ev", id_ev);
+    }
+    
+    // Toggle pour le statut de la card
+    const changeStatusCard = () => {
+        setStatusCard(statusCard === "not finished" ? "finished" : "not finished");
+        changeStatusCardInDB(id_ev, statusCard);
     }
     
     // Fonction qui retourne un composant <p> avec le style de la catégorie 
@@ -64,31 +82,53 @@ function Card({id_ev, nom, saison, episode, point_arret, url, image, domain, cat
             id={id_ev}
         >
             <div className="relative">
+                
+                {/* Image de la série */}
                 <img
                     src={image || "/logo.png"}
                     alt={nom}
                     className="w-full h-[140px] object-cover"
                 />
+                
+                {/* Logo du domaine */}
                 <img
                     src={domain.includes('hurawatch') ? `/hurawatch.png` : `https://favicone.com/${domain}?s=256`}
                     alt=""
                     className="z-10 absolute bottom-0 left-0 w-5 h-5 ml-1 mb-1 rounded-sm"
                 />
-                <MenuCard changeStateCard={changeStateCard} />
-
+                
+                {/* Menu de la card */}
+                <MenuCard changeDeleteCard={changeDeleteCard} changeStatusCard={changeStatusCard} status={statusCard} />
+                
+                {/* Gradient de la card */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                
             </div>
+            
             <div className="flex flex-col gap-2 p-2 pt-0">
+                {/* Nom de la série */}
                 <p className="text-lg color-white truncate whitespace-nowrap overflow-hidden text-ellipsis" title={nom}>
                     {nom}
                 </p>
+                
+                {/* Catégorie de la série */}
                 {
                     categorieStyle(categorie)
                 }
-                <p className="text-sm text-gray-500 dark:text-white">
-                    S{saison}:E{episode} 
-                    {/* ({point_arret}) */}
-                </p>
+                
+                {/* Statut de la série */}
+                {
+                    status === "not finished" && (
+                        <p className="text-sm text-gray-500 dark:text-white">S{saison}:E{episode}</p>
+                    )
+                }
+                {
+                    status === "finished" && (
+                        <CircleCheckBig size={18} className="text-green-500" />
+                    )
+                }
+                
+                {/* Bouton de lecture */}
                 <a
                     href={url}
                     target="_blank"

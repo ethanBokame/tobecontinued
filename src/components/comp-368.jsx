@@ -1,7 +1,4 @@
-import {
-    Ellipsis,
-    TrashIcon,
-} from "lucide-react";
+import { Ellipsis, TrashIcon, CircleCheckBig, CircleX } from "lucide-react";
 
 import {
     DropdownMenu,
@@ -10,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function MenuCard({ changeStateCard }) {
+export default function MenuCard({ changeDeleteCard, changeStatusCard, status }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -21,7 +18,14 @@ export default function MenuCard({ changeStateCard }) {
                 />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                <DropdownMenuItem className="cursor-pointer" onClick={() => confirm("Êtes-vous sûr de vouloir supprimer l'élément ?") && changeStateCard()}>
+                <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() =>
+                        confirm(
+                            "Êtes-vous sûr de vouloir supprimer l'élément ?"
+                        ) && changeDeleteCard()
+                    }
+                >
                     <TrashIcon
                         size={16}
                         className="opacity-60"
@@ -29,6 +33,24 @@ export default function MenuCard({ changeStateCard }) {
                     />
                     Supprimer
                 </DropdownMenuItem>
+                {status === "not finished" && (
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => changeStatusCard()}
+                    >
+                        <CircleCheckBig size={16} className="text-green-500" />
+                        Marquer comme terminé
+                    </DropdownMenuItem>
+                )}
+                {status === "finished" && (
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => changeStatusCard()}
+                    >
+                        <CircleX size={16} className="opacity-60" />
+                        Marquer comme pas encore terminé
+                    </DropdownMenuItem>
+                )}
             </DropdownMenuContent>
         </DropdownMenu>
     );

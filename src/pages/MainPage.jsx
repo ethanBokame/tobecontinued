@@ -13,8 +13,8 @@ function MainPage() {
     const [elements, setElements] = useState([]);
 
     // Chargement
-    const [isLoading, setIsLoading] = useState(true);
-    // const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Récupération des informations de base
     useEffect(() => {
@@ -25,7 +25,7 @@ function MainPage() {
             } = await supabase.auth.getUser();
 
             if (error) {
-                window.location.href = "/";
+                // window.location.href = "/";
                 return;
             }
 
@@ -189,6 +189,33 @@ function MainPage() {
                         <Card key={element.id_ev} {...element} />
                     </MotionEffect>
                 ))}
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            <Card
+                id_ev={1}
+                nom="Breaking Bad"
+                saison={2}
+                episode={5}
+                point_arret="25:00"
+                url="https://example.com/breakingbad"
+                image="https://m.media-amazon.com/images/I/81r+LN-9u2L._AC_SY679_.jpg"
+                domain="example.com"
+                categorie="série"
+                status="not finished"
+            />
+                        <Card
+                id_ev={2}
+                nom="Breaking Bad"
+                saison={2}
+                episode={5}
+                point_arret="25:00"
+                url="https://example.com/breakingbad"
+                image="https://m.media-amazon.com/images/I/81r+LN-9u2L._AC_SY679_.jpg"
+                domain="example.com"
+                categorie="série"
+                    status="finished"
+            />
             </div>
 
             <p className="text-gray-500 text-sm dark:text-white text-center mb-4 px-4 mt-10">
