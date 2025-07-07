@@ -25,7 +25,7 @@ function MainPage() {
             } = await supabase.auth.getUser();
 
             if (error) {
-                // window.location.href = "/";
+                window.location.href = "/";
                 return;
             }
 
