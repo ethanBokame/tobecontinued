@@ -12,9 +12,17 @@ function MainPage() {
     // Eléments
     const [elements, setElements] = useState([]);
 
+    // Eléments filtrés
+    const [elementsFiltered, setElementsFiltered] = useState([]);
+
     // Chargement
     const [isLoading, setIsLoading] = useState(true);
     // const [isLoading, setIsLoading] = useState(false);
+
+    // Clé de filtrage
+    const [filterKey, setFilterKey] = useState(
+        localStorage.getItem("filterKey") || "all"
+    );
 
     // Récupération des informations de base
     useEffect(() => {
@@ -63,6 +71,15 @@ function MainPage() {
                 await delay;
 
                 setElements(data);
+                setElementsFiltered(() => {
+                    if (filterKey === "all") {
+                        return data;
+                    } else {
+                        return data.filter(
+                            (element) => element.status === filterKey
+                        );
+                    }
+                });
                 setIsLoading(false);
                 console.log("Éléments :", data);
             }
@@ -70,6 +87,48 @@ function MainPage() {
 
         getUserAndElements();
     }, []);
+
+    // Délai de l'animation
+    const [delay, setDelay] = useState(0.5);
+
+    // Filtrage des éléments
+    useEffect(() => {
+        // Délai de l'animation
+        setDelay(0.1);
+
+        // Sauvegarde la clé de filtrage dans le localStorage
+        localStorage.setItem("filterKey", filterKey);
+
+        if (filterKey === "all") {
+            setElementsFiltered(elements);
+        } else {
+            setElementsFiltered(() => {
+                const filteredElements = elements.filter(
+                    (element) => element.status === filterKey
+                );
+                return filteredElements;
+            });
+        }
+    }, [elements, filterKey]);
+
+    // Modification du statut dans la vue
+    const changeStatusInView = (id_ev, newStatus) => {
+
+        setTimeout(() => {
+            setElements(prev => 
+                prev.map(el => 
+                    el.id_ev === id_ev ? { ...el, status: newStatus } : el
+                )
+            );
+        }, 1000);
+
+    };
+
+    const handleDelete = (id_ev) => {
+        setElements(prev => 
+            prev.filter(el => el.id_ev !== id_ev)
+        );
+    }
 
     return (
         <div>
@@ -90,7 +149,7 @@ function MainPage() {
                 </div>
             )}
 
-            {!isLoading && elements.length === 0 && (
+            {!isLoading && elementsFiltered.length === 0 && (
                 <div>
                     <p className="text-xl px-4 text-gray-500 dark:text-white leading-relaxed">
                         Lorsque vous regardez du contenu sur l’une des
@@ -168,25 +227,57 @@ function MainPage() {
                 </div>
             )}
 
-            {!isLoading && elements.length != 0 && (
-                <p className="text-xl pl-4 text-gray-500 dark:text-white">
-                    Reprenez où vous en étiez {username}
-                </p>
+            {!isLoading && elementsFiltered.length != 0 && (
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center justify-between">
+                    <p className="text-xl px-4 text-gray-500 dark:text-white">
+                        Reprenez où vous en étiez {username}
+                    </p>
+                    <div className="flex flex-row gap-2 px-4">
+                        <p
+                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                                filterKey === "not finished"
+                                    ? "bg-tbc-primary/60"
+                                    : ""
+                            }`}
+                            onClick={() => setFilterKey("not finished")}
+                        >
+                            Pas encore terminés
+                        </p>
+                        <p
+                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                                filterKey === "finished"
+                                    ? "bg-tbc-primary/60"
+                                    : ""
+                            }`}
+                            onClick={() => setFilterKey("finished")}
+                        >
+                            Terminés
+                        </p>
+                        <p
+                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                                filterKey === "all" ? "bg-tbc-primary/60" : ""
+                            }`}
+                            onClick={() => setFilterKey("all")}
+                        >
+                            Tous
+                        </p>
+                    </div>
+                </div>
             )}
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                {elements.map((element, index) => (
+                {elementsFiltered.map((element, index) => (
                     <MotionEffect
-                        key={element.id_ev}
+                        key={`${filterKey}-${element.id_ev}`} // 👈 clé combinée pour forcer l’animation}
                         id={element.id_ev}
                         slide={{
                             direction: "down",
                         }}
                         fade
                         zoom
-                        delay={0.5 + index * 0.1}
+                        delay={delay + index * 0.1}
                     >
-                        <Card key={element.id_ev} {...element} />
+                        <Card key={element.id_ev} {...element} changeStatusInView={changeStatusInView} handleDelete={handleDelete} />
                     </MotionEffect>
                 ))}
             </div>

@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function MenuCard({ changeDeleteCard, changeStatusCard, status }) {
+export default function MenuCard({ changeDeleteCard, changeStatusCard, statusCard }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -33,7 +33,7 @@ export default function MenuCard({ changeDeleteCard, changeStatusCard, status })
                     />
                     Supprimer
                 </DropdownMenuItem>
-                {status === "not finished" && (
+                {statusCard === "not finished" && (
                     <DropdownMenuItem
                         className="cursor-pointer"
                         onClick={() => changeStatusCard()}
@@ -42,7 +42,7 @@ export default function MenuCard({ changeDeleteCard, changeStatusCard, status })
                         Marquer comme terminé
                     </DropdownMenuItem>
                 )}
-                {status === "finished" && (
+                {statusCard === "finished" && (
                     <DropdownMenuItem
                         className="cursor-pointer"
                         onClick={() => changeStatusCard()}
