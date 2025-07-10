@@ -233,7 +233,7 @@ function MainPage() {
                         Reprenez où vous en étiez {username}
                     </p>
                     <div className="flex flex-row gap-2 px-4">
-                        <p
+                        <button
                             className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "not finished"
                                     ? "bg-tbc-primary/60"
@@ -242,8 +242,8 @@ function MainPage() {
                             onClick={() => setFilterKey("not finished")}
                         >
                             Pas encore terminés
-                        </p>
-                        <p
+                        </button>
+                        <button
                             className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "finished"
                                     ? "bg-tbc-primary/60"
@@ -252,15 +252,15 @@ function MainPage() {
                             onClick={() => setFilterKey("finished")}
                         >
                             Terminés
-                        </p>
-                        <p
+                        </button>
+                        <button
                             className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "all" ? "bg-tbc-primary/60" : ""
                             }`}
                             onClick={() => setFilterKey("all")}
                         >
                             Tous
-                        </p>
+                        </button>
                     </div>
                 </div>
             )}
