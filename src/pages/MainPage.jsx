@@ -149,7 +149,7 @@ function MainPage() {
                 </div>
             )}
 
-            {!isLoading && elementsFiltered.length === 0 && (
+            {!isLoading && elements.length === 0 && (
                 <div>
                     <p className="text-xl px-4 text-gray-500 dark:text-white leading-relaxed">
                         Lorsque vous regardez du contenu sur l’une des
@@ -227,7 +227,7 @@ function MainPage() {
                 </div>
             )}
 
-            {!isLoading && elementsFiltered.length != 0 && (
+            {!isLoading && elements.length != 0 && (
                 <div className="flex flex-col gap-2 lg:gap-4 lg:flex-row lg:items-center justify-between">
                     <p className="text-xl px-4 text-gray-500 dark:text-white">
                         Reprenez où vous en étiez {username}
