@@ -234,7 +234,7 @@ function MainPage() {
                     </p>
                     <div className="flex flex-row gap-2 px-4">
                         <button
-                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-xs lg:text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "not finished"
                                     ? "bg-tbc-primary/60"
                                     : ""
@@ -244,7 +244,7 @@ function MainPage() {
                             Pas encore terminés
                         </button>
                         <button
-                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-xs lg:text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "finished"
                                     ? "bg-tbc-primary/60"
                                     : ""
@@ -254,7 +254,7 @@ function MainPage() {
                             Terminés
                         </button>
                         <button
-                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-xs lg:text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 lg:px-2 lg:py-0.5 rounded-full bg-tbc-primary text-white text-[11px] lg:hover:bg-tbc-primary/60 lg:transition-all lg:duration-100 ${
                                 filterKey === "all" ? "bg-tbc-primary/60" : ""
                             }`}
                             onClick={() => setFilterKey("all")}
