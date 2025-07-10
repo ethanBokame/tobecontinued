@@ -228,13 +228,13 @@ function MainPage() {
             )}
 
             {!isLoading && elementsFiltered.length != 0 && (
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-center justify-between">
+                <div className="flex flex-col gap-2 lg:gap-4 lg:flex-row lg:items-center justify-between">
                     <p className="text-xl px-4 text-gray-500 dark:text-white">
                         Reprenez où vous en étiez {username}
                     </p>
                     <div className="flex flex-row gap-2 px-4">
                         <p
-                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
                                 filterKey === "not finished"
                                     ? "bg-tbc-primary/60"
                                     : ""
@@ -244,7 +244,7 @@ function MainPage() {
                             Pas encore terminés
                         </p>
                         <p
-                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
                                 filterKey === "finished"
                                     ? "bg-tbc-primary/60"
                                     : ""
@@ -254,7 +254,7 @@ function MainPage() {
                             Terminés
                         </p>
                         <p
-                            className={`cursor-pointer px-2 py-0.5 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
+                            className={`cursor-pointer px-2.5 py-1 rounded-full bg-tbc-primary text-white text-[11px] hover:bg-tbc-primary/60 transition-all duration-100 ${
                                 filterKey === "all" ? "bg-tbc-primary/60" : ""
                             }`}
                             onClick={() => setFilterKey("all")}
