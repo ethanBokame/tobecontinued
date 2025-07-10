@@ -2434,6 +2434,10 @@ body {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
+
+  .lg\:hover\:bg-tbc-primary\/60:hover {
+    background-color: rgb(0 159 253 / 0.6);
+  }
 }
 
 .\[\&\>button\:last-child\]\:text-white>button:last-child {
