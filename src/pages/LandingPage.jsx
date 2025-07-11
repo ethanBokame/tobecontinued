@@ -367,14 +367,16 @@ function LandingPage() {
 
             {isBottomSheetOpen && (
                 <div
-                    className="fixed bottom-0 z-20 w-full flex flex-col items-baseline gap-2 p-4 bg-white dark:bg-gray-800 rounded-t-lg shadow-lg cursor-pointer"
-                    onClick={() => loginWithGoogle()}
+                    className="fixed bottom-0 z-20 w-full flex flex-col items-baseline gap-2 p-4 bg-white dark:bg-gray-800 rounded-t-lg shadow-lg"
                 >
                     <X
-                        className="ml-auto"
+                        className="ml-auto cursor-pointer"
                         onClick={() => setIsBottomSheetOpen(false)}
                     />
-                    <div className="flex items-center gap-2 border dark:border-white rounded-lg p-3 mx-auto">
+                    <div 
+                        className="flex items-center gap-2 border dark:border-white rounded-lg p-3 mx-auto cursor-pointer"
+                        onClick={() => loginWithGoogle()}
+                    >
                         <svg
                             stroke="currentColor"
                             fill="currentColor"
