@@ -8,6 +8,7 @@ import Card from "../components/Card";
 function MainPage() {
     // Utilisateur
     const [username, setUsername] = useState("");
+    const [fullUsername, setFullUsername] = useState("");
 
     // Eléments
     const [elements, setElements] = useState([]);
@@ -39,6 +40,8 @@ function MainPage() {
             }
 
             if (user) {
+                // Récupération du nom d'utilisateur
+                setFullUsername(user.user_metadata.name);
                 const chaineDeCaracteres = user.user_metadata.name;
                 const mots = chaineDeCaracteres.split(" ");
                 const premierMot =
@@ -105,7 +108,7 @@ function MainPage() {
         };
 
         addPageConsultation();
-    }, [username]);
+    }, [fullUsername]);
 
     // Délai de l'animation
     const [delay, setDelay] = useState(0.5);
