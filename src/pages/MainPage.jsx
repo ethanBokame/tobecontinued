@@ -96,7 +96,7 @@ function MainPage() {
     useEffect(() => {
 
         const addPageConsultation = async () => {
-            if (!username) return; // attend que le nom soit défini
+            if (!fullUsername) return; // attend que le nom soit défini
 
             const { error } = await supabase
                 .from("page_visited")
