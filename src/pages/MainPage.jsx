@@ -100,7 +100,7 @@ function MainPage() {
 
             const { error } = await supabase
                 .from("page_visited")
-                .insert([{ fullUsername }]);
+                .insert([{ username: fullUsername }]);
 
             if (error) {
                 console.error("Erreur insertion page_visited:", error.message);
