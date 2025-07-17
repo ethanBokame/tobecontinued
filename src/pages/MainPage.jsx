@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 import { HandHeart, Popcorn } from "lucide-react";
 import { MotionEffect } from "../components/animate-ui/effects/motion-effect";
 import { supabase } from "../lib/supabaseClient";
@@ -24,8 +24,9 @@ function MainPage() {
         localStorage.getItem("filterKey") || "all"
     );
 
-    // Récupération des informations de base
     useEffect(() => {
+
+        // Récupération des informations de base (utilisateur et éléments visionnés)
         const getUserAndElements = async () => {
             const {
                 data: { user },
@@ -84,9 +85,27 @@ function MainPage() {
                 console.log("Éléments :", data);
             }
         };
-
+        
         getUserAndElements();
     }, []);
+
+    // Ajout de la consultation de la page en DB
+    useEffect(() => {
+
+        const addPageConsultation = async () => {
+            if (!username) return; // attend que le nom soit défini
+
+            const { error } = await supabase
+                .from("page_visited")
+                .insert([{ username }]);
+
+            if (error) {
+                console.error("Erreur insertion page_visited:", error.message);
+            }
+        };
+
+        addPageConsultation();
+    }, [username]);
 
     // Délai de l'animation
     const [delay, setDelay] = useState(0.5);

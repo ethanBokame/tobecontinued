@@ -1,0 +1,6 @@
+# Création de la table page_visited
+CREATE TABLE page_visited (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    visited_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
